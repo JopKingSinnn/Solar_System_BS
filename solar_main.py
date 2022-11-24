@@ -1,3 +1,6 @@
+# coding: utf-8
+# license: GPLv3
+
 import pygame as pg
 from solar_vis import *
 from solar_model import *
@@ -167,5 +170,7 @@ def main():
         time.sleep(1.0 / 60)
 
     print('Modelling finished!')
+
+
 if __name__ == "__main__":
     main()
