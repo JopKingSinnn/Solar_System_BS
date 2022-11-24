@@ -60,40 +60,6 @@ def stop_execution():
     """
     global alive
     alive = False
-def slider_to_real(val):
-    return np.exp(5 + val)
-def slider_reaction(event):
-    global time_scale
-    time_scale = slider_to_real(event.el.get_value())
-def init_ui(screen):
-    global browser
-    slider = thorpy.SliderX(100, (-10, 10), "Simulation speed")
-    slider.user_func = slider_reaction
-    button_stop = thorpy.make_button("Quit", func=stop_execution)
-    button_pause = thorpy.make_button("Pause", func=pause_execution)
-    button_play = thorpy.make_button("Play", func=start_execution)
-    timer = thorpy.OneLineText("Seconds passed")
-    button_load = thorpy.make_button(text="Load a file", func=open_file)
-    box = thorpy.Box(elements=[
-        slider,
-        button_pause,
-        button_stop,
-        button_play,
-        button_load,
-        timer])
-    reaction1 = thorpy.Reaction(reacts_to=thorpy.constants.THORPY_EVENT,
-                                reac_func=slider_reaction,
-                                event_args={"id": thorpy.constants.EVENT_SLIDE},
-                                params={},
-                                reac_name="slider reaction")
-    box.add_reaction(reaction1)
-    menu = thorpy.Menu(box)
-    for element in menu.get_population():
-        element.surface = screen
-    box.set_topleft((0, 0))
-    box.blit()
-    box.update()
-    return menu, box, timer
 
 
 def open_file():
